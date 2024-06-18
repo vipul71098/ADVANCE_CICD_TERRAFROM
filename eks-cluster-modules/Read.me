@@ -1,0 +1,9 @@
+
+#terraform init
+  terraform init -backend-config=backend-config.hcl
+
+#terraform plan
+  terraform plan -var-file=../global_var.tfvars
+
+#terraform apply
+   terraform apply -var-file=../global_var.tfvars

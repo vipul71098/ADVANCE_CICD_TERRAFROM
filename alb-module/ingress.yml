@@ -1,0 +1,47 @@
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-kubernetes
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/subnets: SUBNET_ID
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/certificate-arn: ACM_ARN
+    alb.ingress.kubernetes.io/load-balancer-name: ALB_NAME
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /a1
+        pathType: Prefix
+        backend:
+          service:
+            name: service1
+            port:
+              number: 80
+      - path: /a2
+        pathType: Prefix
+        backend:
+          service:
+            name: service2
+            port:
+              number: 80
+      - path: /a3
+        pathType: Prefix
+        backend:
+          service:
+            name: service3
+            port:
+              number: 80
+      - path: /a4
+        pathType: Prefix
+        backend:
+          service:
+            name: service4
+            port:
+              number: 80
+
+
